@@ -5,6 +5,12 @@ export const createListing = async (req, res, next) => {
   console.log("**********")
   console.log(req.body);
   console.log("**********")
+  console.log(req.user);
+  console.log("**********")
+  if (req.user.role !== 1) {
+    return next(errorHandler(401, 'Register as a lab owner to create a lab listing!'));
+  }
+
   try {
     const listing = await Listing.create(req.body);
     //console.log(listing.json)

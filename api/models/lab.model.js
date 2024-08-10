@@ -10,27 +10,44 @@ const labSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    phoneNumber:{
+    labState:{
       type: String,
       required: true,
     },
-    email:{
+    labCity:{
       type: String,
       required: true,
     },
-    web_site: {
+    labPin:{
+      type: String,
+      required: true,
+    },
+    labLatLong:{
+      type: String,
+      required: true,
+    },
+    labPhoneNumber:{
+      type: String,
+      required: true,
+    },
+    labEmail:{
+      type: String,
+      required: true,
+    },
+    labWebsite: {
       type: String,
     },
-    operatingDays: {
+    labOperatingDays: {
       type: Array,
       required: true,
     },
-    availableTimeSlots: {
-      type: Array,
+    labOpeningTime:{
+      type: String,
       required: true,
     },
-    labImages:{
-      type: String
+    labClosingTime:{
+      type: String,
+      required: true,
     },
     imageUrls: {
       type: Array,

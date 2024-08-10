@@ -2,6 +2,11 @@ import Lab from '../models/lab.model.js';
 import { errorHandler } from '../utils/error.js';
 
 export const createLab = async (req, res, next) => {
+  //role check
+  console.log("req.user.role: "+req.user.role)
+  if (req.user.role !== 1) {
+    return next(errorHandler(401, 'Register as a lab owner to create a lab!'));
+  }
   console.log("**********")
   console.log(req.body);
   console.log("**********")

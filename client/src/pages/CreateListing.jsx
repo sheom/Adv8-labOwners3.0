@@ -364,7 +364,7 @@ export default function CreateListing() {
             )}
           </div>
         </div>
-        {/* <div className='flex flex-col flex-1 gap-4'>
+        <div className='flex flex-col flex-1 gap-4'>
           <p className='font-semibold'>
             Images(max 6):
             <span className='font-normal text-gray-600 ml-2'>
@@ -419,7 +419,7 @@ export default function CreateListing() {
             {loading ? 'Registering...' : 'Register Center'}
           </button>
           {error && <p className='text-red-700 text-sm'>{error}</p>}
-        </div> */}
+        </div>
       </form>
     </main>
   );
