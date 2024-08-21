@@ -65,11 +65,13 @@ export const updateLab = async (req, res, next) => {
 
 export const getLab = async (req, res, next) => {
   try {
-    const lab = await Lab.findById(req.params.id);
+    const lab = await lab.findById(req.params.id);
     if (!lab) {
       return next(errorHandler(404, 'Lab not found!'));
     }
     res.status(200).json(lab);
+    console.log("************************************")
+    console.log(lab)
   } catch (error) {
     next(error);
   }
@@ -79,48 +81,20 @@ export const getLabs = async (req, res, next) => {
   try {
     const limit = parseInt(req.query.limit) || 9;
     const startIndex = parseInt(req.query.startIndex) || 0;
-    let offer = req.query.offer;
-
-    if (offer === undefined || offer === 'false') {
-      offer = { $in: [false, true] };
-    }
-
-    let nabl = req.query.nabl;
-
-    if (nabl === undefined || nabl === 'false') {
-      nabl = { $in: [false, true] };
-    }
-
-    let nabh = req.query.nabh;
-
-    if (nabh === undefined || nabh === 'false') {
-      nabh = { $in: [false, true] };
-    }
-
-    let type = req.query.type;
-
-    if (type === undefined || type === 'all') {
-      type = { $in: ['lab', 'doc'] };
-    }
 
     const searchTerm = req.query.searchTerm || '';
-
     const sort = req.query.sort || 'createdAt';
-
     const order = req.query.order || 'desc';
-
-    const labs = await Lab.find({
-      name: { $regex: searchTerm, $options: 'i' },
-      offer,
-      nabl,
-      nabh,
-      type,
-    })
+    const labs = await Lab.find()
       .sort({ [sort]: order })
       .limit(limit)
       .skip(startIndex);
 
+      console.log("******************************************")
+      console.log(labs)
+      console.log("******************************************")
     return res.status(200).json(labs);
+    
   } catch (error) {
     next(error);
   }
