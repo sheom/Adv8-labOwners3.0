@@ -53,9 +53,9 @@ const labSchema = new mongoose.Schema(
       type: Array,
       required: true,
     },
-    userRef: {
+    ownerRef: {
       type: String,
-      required: false,
+      required: true,
     },
   },
   { timestamps: true }

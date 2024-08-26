@@ -11,7 +11,12 @@ export const createLab = async (req, res, next) => {
   console.log(req.body);
   console.log("**********");
   try {
-    const lab = await Lab.create(req.body);
+    const newLab = {
+      ...req.body,
+      ownerRef: req.user.id
+    }
+    //const lab = await Lab.create(req.body);
+    const lab = await Lab.create(newLab);
     //console.log(lab.json)
     return res.status(201).json(lab);
   } catch (error) {
@@ -109,7 +114,7 @@ export const getOwnLabs = async (req, res, next) => {
   // }
 
   try {
-    const labs = await Lab.find({ userRef: req.user.id });
+    const labs = await Lab.find({ ownerRef: req.user.id });
     res.status(200).json(labs);
   } catch (error) {
     next(error);
