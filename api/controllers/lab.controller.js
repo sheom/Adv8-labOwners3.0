@@ -99,3 +99,16 @@ export const getLabs = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getOwnLabs = async (req, res, next) => {
+  if (req.user.id === req.params.id) {
+    try {
+      const labs = await Lab.find({ userRef: req.params.id });
+      res.status(200).json(labs);
+    } catch (error) {
+      next(error);
+    }
+  } else {
+    return next(errorHandler(401, 'You can only view your own labs!'));
+  }
+};
