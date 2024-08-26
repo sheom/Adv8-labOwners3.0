@@ -49,7 +49,7 @@ const labSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    imageUrls: {
+    labImageUrls: {
       type: Array,
       required: true,
     },
