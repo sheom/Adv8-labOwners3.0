@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
-import listingRouter from './routes/listing.route.js';
+//import listingRouter from './routes/listing.route.js';
 import bookingRouter from './routes/booking.route.js';
 import labRouter from './routes/lab.route.js'
 
@@ -36,7 +36,7 @@ app.listen(3000, () => {
 
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
-app.use('/api/listing', listingRouter);
+//app.use('/api/listing', listingRouter);
 app.use('/api/booking', bookingRouter);
 app.use('/api/lab', labRouter);
 

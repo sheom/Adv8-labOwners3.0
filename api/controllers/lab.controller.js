@@ -67,13 +67,13 @@ export const updateLab = async (req, res, next) => {
 
 export const getLab = async (req, res, next) => {
   try {
-    const lab = await lab.findById(req.params.id);
+    const lab = await Lab.findById(req.params.id);
     if (!lab) {
       return next(errorHandler(404, "Lab not found!"));
     }
     res.status(200).json(lab);
-    console.log("************************************");
-    console.log(lab);
+    // console.log("************************************");
+    // console.log(lab);
   } catch (error) {
     next(error);
   }
@@ -92,9 +92,9 @@ export const getLabs = async (req, res, next) => {
       .limit(limit)
       .skip(startIndex);
 
-    console.log("******************************************");
-    console.log(labs);
-    console.log("******************************************");
+    // console.log("******************************************");
+    // console.log(labs);
+    // console.log("******************************************");
     return res.status(200).json(labs);
   } catch (error) {
     next(error);
@@ -115,6 +115,7 @@ export const getOwnLabs = async (req, res, next) => {
 
   try {
     const labs = await Lab.find({ ownerRef: req.user.id });
+    
     res.status(200).json(labs);
   } catch (error) {
     next(error);

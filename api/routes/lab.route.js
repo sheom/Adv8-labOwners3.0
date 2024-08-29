@@ -7,8 +7,9 @@ const router = express.Router();
 router.post('/create',verifyToken, createLab);
 router.delete('/delete/:id', verifyToken, deleteLab);
 router.post('/update/:id', verifyToken, updateLab);
+router.get('/lab/owner',verifyToken, getOwnLabs);
 router.get('/get/:id', getLab);
 router.get('/get', getLabs);
-router.get('/getlab/owner',verifyToken, getOwnLabs);
+
 
 export default router;
