@@ -2,13 +2,23 @@ import Product from '../models/product.model.js';
 import { errorHandler } from '../utils/error.js';
 
 export const createProduct = async (req, res, next) => {
-  console.log("**********")
-  console.log(req.body);
-  console.log("**********")
-
   try {
-    const product = await Product.create(req.body);
-    return res.status(201).json(product);
+    const newProduct = {
+      userRef: req.user? req.user.id:"",
+      ...req.body
+    };
+    //const product = await Product.create(req.body);
+    // check if productlist is laready there for the labID
+    const oldLabProduct = await Product.find({ labRef: req.body.labRef });
+    // console.log("#############################################")
+    // console.log(oldLabProduct.length)
+    // console.log("#################################################")
+    if(oldLabProduct.length == 0){
+      const product = await Product.create(newProduct);
+      return res.status(201).json(product);
+    }else{
+      return next(errorHandler(401, 'Products are already added for this lab, please use edit option to update it!'));
+    }
   } catch (error) {
     next(error);
   }
