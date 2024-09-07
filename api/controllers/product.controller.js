@@ -65,7 +65,9 @@ export const updateProduct = async (req, res, next) => {
 
 export const getProduct = async (req, res, next) => {
   try {
-    const product = await Product.findById(req.params.id);
+    //const product = await Product.findById(req.params.id);
+    //const labs = await Lab.find({ ownerRef: req.user.id });
+    const product = await Product.find({labRef: req.params.id});
     if (!product) {
       return next(errorHandler(404, 'Product not found!'));
     }
