@@ -10,9 +10,6 @@ export const createProduct = async (req, res, next) => {
     //const product = await Product.create(req.body);
     // check if productlist is laready there for the labID
     const oldLabProduct = await Product.find({ labRef: req.body.labRef });
-    // console.log("#############################################")
-    // console.log(oldLabProduct.length)
-    // console.log("#################################################")
     if(oldLabProduct.length == 0){
       const product = await Product.create(newProduct);
       return res.status(201).json(product);
@@ -43,7 +40,44 @@ export const deleteProduct = async (req, res, next) => {
 };
 
 export const updateProduct = async (req, res, next) => {
+  
+  console.log("ID received on update is: "+req.params.id)
+  //res.status(200).json({"msg":"Welcome to update Product"});
+
+  const oldLabProduct = await Product.find({ labRef: req.params.id });
+
+  if (!oldLabProduct) {
+    return next(errorHandler(404, 'No Product is added for this lab, please add some products first.'));
+  }
+  // if (req.user.id !== product.userRef) {
+  //   return next(errorHandler(401, 'You can only update your own products!'));
+  // }
+  // let productID = oldLabProduct._id
+  // console.log("productID: "+productID)
+  // console.log("############################################")
+  // console.log(oldLabProduct)
+  // console.log("##############################################")
+
+
+  try {
+    const updatedProduct = await Product.findOneAndUpdate(
+      { labRef: req.params.id },
+      {
+        userRef: req.user? req.user.id:"",
+        ...req.body,
+      },
+      { new: true }
+    );
+    res.status(200).json(updatedProduct);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateProduct_old = async (req, res, next) => {
+
   const product = await Product.findById(req.params.id);
+
   if (!product) {
     return next(errorHandler(404, 'Product not found!'));
   }
