@@ -1,0 +1,27 @@
+{
+  "userDetails": {
+    "fullName": "Tuhin",
+    "dateOfBirth": "2024-09-11",
+    "gender": "male",
+    "phoneNumber": "87968545543",
+    "email": "tuhinmajumdar987@gmail.com",
+    "address": "Kharagpur"
+  },
+  "uploadedFiles": [
+    "https://firebasestorage.googleapis.com/v0/b/adva8-2023.appspot.com/o/medical_reports%2F46361.jpg?alt=media&token=016f0051-44e6-428f-8b0b-cd90df5a3012"
+  ],
+  "selectedTests": [
+    {
+      "id": 1,
+      "name": "Blood Test",
+      "description": "Complete blood count",
+      "price": "$50"
+    },
+    { "id": 3, "name": "X-Ray", "description": "Chest X-ray", "price": "$100" }
+  ],
+  "availability": { "day": "Wednesday", "timeSlot": "10AM - 11AM" },
+  "additionalFeatures": { "expressService": true, "onlineReports": false },
+  "totalTests": 2,
+  "totalPrice": "150.00",
+  "labRef": "66d06be03c5544e07b8b57eb"
+}
