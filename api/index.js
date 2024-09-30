@@ -9,6 +9,8 @@ import bookingRouter from './routes/booking.route.js';
 import labRouter from './routes/lab.route.js'
 import productRouter from "./routes/product.route.js"
 
+import orderRouter from "./routes/order.route.js"
+
 import cookieParser from 'cookie-parser';
 import path from 'path';
 dotenv.config();
@@ -41,6 +43,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/booking', bookingRouter);
 app.use('/api/lab', labRouter);
 app.use('/api/product', productRouter);
+app.use('/api/order', orderRouter);
 
 
 app.use(express.static(path.join(__dirname, '/client/dist')));

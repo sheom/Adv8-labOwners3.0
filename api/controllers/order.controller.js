@@ -4,16 +4,20 @@ import { errorHandler } from '../utils/error.js';
 export const createOrder = async (req, res, next) => {
   try {
     const newOrder = {
-      ...req.body,
-      userRef: req.user.id
+      userRef: req.user? req.user.id:"Dummy User",
+      ...req.body
     }
+    console.log("**********")
+    console.log(JSON.stringify(newOrder)
+    );
+    console.log("**********")
     const order = await Order.create(newOrder);
     return res.status(201).json(order);
   } catch (error) {
     next(error);
-    console.log("**********")
-    console.log(error);
-    console.log("**********")
+    // console.log("**********")
+    // console.log(error);
+    // console.log("**********")
   }
 
 };
